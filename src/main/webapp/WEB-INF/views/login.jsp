@@ -3,18 +3,37 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <title>Login de Usuario</title>
     </head>
     <body>
-        <h1> Login de usuario  </h1>
-        <br/>
-        <form action="loginAccion" method="post">
-            Usuario: <input type="text" name="txtUsuario"><br/>
-            Clave: <input type="password" name="txtClave"><br/>
-            <input type="submit" value="Ingresar"/>
-        </form>
-        <% if(request.getAttribute("msgError") != null){
-            out.print(request.getAttribute("msgError"));
-        }%>
+        <div class="container">
+        <div class="row d-flex justify-content-center">
+            <h1 class="text-center mb-4"> Login de usuario  </h1>
+            <div class="col-md-6">
+                <form action="loginAccion" method="post">
+                            <div class="form-group">
+                                Usuario: <input type="text" name="txtUsuario" class="form-control shadow-none"
+                                required placeholder="Usuario">
+                            </div>
+                            <div class="form-group">
+                                Clave: <input type="password" name="txtClave" class="form-control shadow-none"
+                                required placeholder="Clave">
+                            </div>
+                            <div class="d-grid my-4">
+                                <input type="submit" value="Ingresar" class="btn btn-primary"/>
+                            </div>
+                </form>
+            </div>
+        </div>
+        </div>
+
+        <% if(request.getAttribute("msgError") != null){ %>
+            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                <strong>Error!</strong> <%= request.getAttribute("msgError") %>
+                <button type="button" class="btn-close" data-bs-dismissible="alert"></button>
+            </div>
+        <% } %>
     </body>
 </html>
