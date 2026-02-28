@@ -15,10 +15,10 @@ public class UsuarioDAO {
     @PostConstruct
     public void UsuarioDTO(){
         listaUsuarios = new ArrayList<>();
-        listaUsuarios.add(new UsuarioDTO("jose", "12345", "Jose Perez"));
-        listaUsuarios.add(new UsuarioDTO("luis", "12345", "Luis Medina"));
-        listaUsuarios.add(new UsuarioDTO("carmen", "12345", "Carmen Rios"));
-        listaUsuarios.add(new UsuarioDTO("maria", "12345", "Maria Pineda"));
+        listaUsuarios.add(new UsuarioDTO(1,"jose", "12345", "Jose Perez", null));
+        listaUsuarios.add(new UsuarioDTO(2,"luis", "12345", "Luis Medina", null));
+        listaUsuarios.add(new UsuarioDTO(3, "carmen", "12345", "Carmen Rios", null));
+        listaUsuarios.add(new UsuarioDTO(4, "maria", "12345", "Maria Pineda", null));
     }
 
     public void insertarUsuario(UsuarioDTO usuario){
@@ -29,11 +29,29 @@ public class UsuarioDAO {
         return listaUsuarios;
     }
 
+    public void usuarioEliminar(int id){
+        for (UsuarioDTO u: listaUsuarios) {
+            if(u.getId()==id)
+                listaUsuarios.remove(id);
+        }
+    }
+
     public UsuarioDTO validarLogin(UsuarioDTO usuario){
         if(usuario.getUsuario().equalsIgnoreCase("user") && usuario.getClave().equals("12345")){
             usuario.setNombreCompleto("Nombre completo del usuario");
         }else
             usuario = null;
         return usuario;
+    }
+
+    public UsuarioDTO getUsuario(String codigo){
+        UsuarioDTO rpta = null;
+        for(UsuarioDTO usuario:listaUsuarios){
+            if(usuario.getUsuario().equalsIgnoreCase(codigo)){
+                rpta = usuario;
+                break;
+            }
+        }
+        return rpta;
     }
 }

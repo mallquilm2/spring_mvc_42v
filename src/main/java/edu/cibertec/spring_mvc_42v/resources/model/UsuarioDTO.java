@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Size;
 
 public class UsuarioDTO {
 
+    private int id;
+
     @Size(min=3, max = 20, message = "El usuario debe tener entre 3 y 30 caracteres")
     private String usuario;
 
@@ -14,12 +16,17 @@ public class UsuarioDTO {
     private String clave;
     private String nombreCompleto;
 
+    private byte[] foto;
+
     public UsuarioDTO() {
     }
-    public UsuarioDTO(String usuario, String clave, String nombreCompleto) {
+
+    public UsuarioDTO(int id, String usuario, String clave, String nombreCompleto, byte[] foto) {
+        this.id = id;
         this.usuario = usuario;
         this.clave = clave;
         this.nombreCompleto = nombreCompleto;
+        this.foto = foto;
     }
 
     public String getUsuario() {
@@ -44,5 +51,21 @@ public class UsuarioDTO {
 
     public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
     }
 }

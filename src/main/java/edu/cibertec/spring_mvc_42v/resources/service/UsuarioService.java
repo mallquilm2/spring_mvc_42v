@@ -24,4 +24,12 @@ public class UsuarioService {
         return usuarioDAO.getListaUsuario();
     }
 
+    public void usuarioEliminar(int id){
+         usuarioDAO.usuarioEliminar(id);
+    }
+
+    public UsuarioDTO getUsuario(String codigo){
+        return usuarioDAO.getUsuario(codigo);
+    }
+
 }
