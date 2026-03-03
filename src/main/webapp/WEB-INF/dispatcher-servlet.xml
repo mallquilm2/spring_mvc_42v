@@ -21,10 +21,10 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 -->
-    <bean id="templateResolver" class="org.thymeleaf.templateresolver.StringTemplateResolver">
+    <bean id="templateResolver" class="org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver">
         <property name="prefix" value="/WEB-INF/templates/"/>
         <property name="suffix" value=".html"/>
-        <property name="templateMode" value="HTML5"/>
+        <property name="templateMode" value="HTML"/>
     </bean>
 
     <bean id="templateEngine" class="org.thymeleaf.spring6.SpringTemplateEngine">
