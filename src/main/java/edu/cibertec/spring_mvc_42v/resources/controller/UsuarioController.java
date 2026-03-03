@@ -1,6 +1,6 @@
 package edu.cibertec.spring_mvc_42v.resources.controller;
 
-import edu.cibertec.spring_mvc_42v.resources.model.UsuarioDTO;
+import edu.cibertec.spring_mvc_42v.resources.entity.UsuarioEntity;
 import edu.cibertec.spring_mvc_42v.resources.service.UsuarioService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -32,11 +32,11 @@ public class UsuarioController {
     public ModelAndView loginAccion(HttpServletRequest request){
         ModelAndView mv = null;
 
-        UsuarioDTO usuarioValida = new UsuarioDTO();
+        UsuarioEntity usuarioValida = new UsuarioEntity();
         usuarioValida.setUsuario(request.getParameter("txtUsuario"));
         usuarioValida.setClave(request.getParameter("txtClave"));
 
-        UsuarioDTO ue = usuarioService.validarLogin(usuarioValida);
+        UsuarioEntity ue = usuarioService.validarLogin(usuarioValida);
         if(ue == null){
             mv = new ModelAndView("login","msgError", "Usuario y clave no existen. Vuelva a intentar");
         }else{
@@ -47,11 +47,11 @@ public class UsuarioController {
 
     @RequestMapping("usuarioCrear")
     public ModelAndView crearUsuario(){
-        return new ModelAndView("usuarioDatos", "usuarioBean", new UsuarioDTO());
+        return new ModelAndView("usuarioDatos", "usuarioBean", new UsuarioEntity());
     }
 
     @RequestMapping("usuarioGrabar")
-    public ModelAndView grabarUsuario(@Valid @ModelAttribute("usuarioBean") UsuarioDTO usuario, BindingResult result){
+    public ModelAndView grabarUsuario(@Valid @ModelAttribute("usuarioBean") UsuarioEntity usuario, BindingResult result){
         ModelAndView mv = null;
         if(result.hasErrors()){
             mv = new ModelAndView("usuarioDatos","usuarioBean", usuario);
@@ -64,12 +64,12 @@ public class UsuarioController {
 
     @RequestMapping("usuarioEliminar")
     public ModelAndView usuarioEliminar(HttpServletRequest request){
-        int id = Integer.parseInt(request.getParameter("id").trim());
+        String id = request.getParameter("id").trim();
         usuarioService.usuarioEliminar(id);
         return new ModelAndView("usuarioLista", "lista",actualizarListadoUsuarios());
     }
 
-    public List<UsuarioDTO> actualizarListadoUsuarios(){
+    public List<UsuarioEntity> actualizarListadoUsuarios(){
         return usuarioService.getListaUsuario();
     }
 
@@ -82,7 +82,7 @@ public class UsuarioController {
     @RequestMapping("fotoGrabar")
     public ModelAndView fotoGrabar(@RequestParam("archivo") MultipartFile archivo,
                                    @RequestParam("codigoUsuario") String codigoUsuario){
-        UsuarioDTO usuario = usuarioService.getUsuario(codigoUsuario);
+        UsuarioEntity usuario = usuarioService.getUsuario(codigoUsuario);
         try {
             usuario.setFoto(archivo.getBytes());
         } catch (IOException e) {

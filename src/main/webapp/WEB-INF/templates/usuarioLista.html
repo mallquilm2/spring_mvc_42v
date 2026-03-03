@@ -26,10 +26,8 @@
                         <td th:text="${user.clave}"></td>
                         <td th:text="${user.nombreCompleto}"></td>
                         <td><a th:href="@{'fotoMostrar?codigoUsuario='+${user.usuario}}">foto</a></td>
-                        <!--
-                        <td> <a href="usuarioEliminar?id=<%= usuario.getId() %>" >Eliminar</a> </td>
-                        <td> <a href="usuarioActualizar">Actualizar</a> </td>
-                        -->
+                        <td><a th:href="@{'usuarioEliminar?codigoUsuario='+${user.usuario}}">Eliminar</a></td>
+                        <td><a th:href="@{'usuarioActualizar?codigoUsuario='+${user.usuario}}">Editar</a></td>
                     </tr>
             </tbody>
         </table>

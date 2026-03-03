@@ -1,27 +1,36 @@
-package edu.cibertec.spring_mvc_42v.resources.model;
+package edu.cibertec.spring_mvc_42v.resources.entity;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public class UsuarioDTO {
+import java.util.Arrays;
+
+@Entity
+@Table(name = "usuario")
+public class UsuarioEntity {
 
     private int id;
 
+    @Id
     @Size(min=3, max = 20, message = "El usuario debe tener entre 3 y 30 caracteres")
     private String usuario;
 
     @NotNull(message = "La clave no puede ser nula")
     @NotBlank(message = "La clave no puede estar en blanco")
+    @Column(nullable = false)
     private String clave;
+    @Column(name = "nombreCompleto")
     private String nombreCompleto;
 
+    @Transient
     private byte[] foto;
 
-    public UsuarioDTO() {
+    public UsuarioEntity() {
     }
 
-    public UsuarioDTO(int id, String usuario, String clave, String nombreCompleto, byte[] foto) {
+    public UsuarioEntity(int id, String usuario, String clave, String nombreCompleto, byte[] foto) {
         this.id = id;
         this.usuario = usuario;
         this.clave = clave;
@@ -67,5 +76,16 @@ public class UsuarioDTO {
 
     public void setFoto(byte[] foto) {
         this.foto = foto;
+    }
+
+    @Override
+    public String toString() {
+        return "UsuarioEntity{" +
+                "id=" + id +
+                ", usuario='" + usuario + '\'' +
+                ", clave='" + clave + '\'' +
+                ", nombreCompleto='" + nombreCompleto + '\'' +
+                ", foto=" + Arrays.toString(foto) +
+                '}';
     }
 }
