@@ -1,4 +1,4 @@
-package edu.cibertec.spring_mvc_42v.resources.entity;
+package edu.cibertec.spring_mvc_42v.resources.dao.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -10,7 +10,7 @@ import java.util.Arrays;
 @Entity
 @Table(name = "usuario")
 public class UsuarioEntity {
-
+    @Transient
     private int id;
 
     @Id
@@ -21,7 +21,7 @@ public class UsuarioEntity {
     @NotBlank(message = "La clave no puede estar en blanco")
     @Column(nullable = false)
     private String clave;
-    @Column(name = "nombreCompleto")
+    @Column(name = "nombrecompleto")
     private String nombreCompleto;
 
     @Transient

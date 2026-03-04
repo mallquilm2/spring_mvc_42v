@@ -43,7 +43,7 @@
     <jpa:repositories base-package="edu.cibertec.spring_mvc_42v.resources.dao"/>
     <bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/matricula?serverTimeZone=UTC&amp;useSSL=false"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/matricula_42v?serverTimeZone=UTC&amp;useSSL=false"/>
         <property name="username" value="root"/>
         <property name="password" value="root"/>
     </bean>
@@ -52,12 +52,12 @@
         p:dataSource-ref="datasource">
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                <property name="generatedDdl" value="false"/>
+                <property name="generateDdl" value="false"/>
                 <property name="showSql" value="true"/>
-                <property name="databasePlatform" value="org.hibernate.dialect.MYSQL5Dialect"/>
+                <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect"/>
             </bean>
         </property>
     </bean>
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
-        p:entintyManager-ref="entityManagerFactory"/>
+        p:entityManagerFactory-ref="entityManagerFactory"/>
 </beans>

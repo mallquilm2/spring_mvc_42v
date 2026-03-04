@@ -1,6 +1,6 @@
 package edu.cibertec.spring_mvc_42v.resources.dao;
 
-import edu.cibertec.spring_mvc_42v.resources.entity.UsuarioEntity;
+import edu.cibertec.spring_mvc_42v.resources.dao.entity.UsuarioEntity;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 

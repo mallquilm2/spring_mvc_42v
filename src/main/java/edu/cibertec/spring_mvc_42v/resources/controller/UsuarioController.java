@@ -1,6 +1,6 @@
 package edu.cibertec.spring_mvc_42v.resources.controller;
 
-import edu.cibertec.spring_mvc_42v.resources.entity.UsuarioEntity;
+import edu.cibertec.spring_mvc_42v.resources.dao.entity.UsuarioEntity;
 import edu.cibertec.spring_mvc_42v.resources.service.UsuarioService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;

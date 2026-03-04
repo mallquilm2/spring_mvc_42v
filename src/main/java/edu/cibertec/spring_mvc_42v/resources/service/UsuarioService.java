@@ -1,8 +1,7 @@
 package edu.cibertec.spring_mvc_42v.resources.service;
 
 import edu.cibertec.spring_mvc_42v.resources.dao.UsuarioDAO;
-import edu.cibertec.spring_mvc_42v.resources.dao.UsuarioDAO_old;
-import edu.cibertec.spring_mvc_42v.resources.entity.UsuarioEntity;
+import edu.cibertec.spring_mvc_42v.resources.dao.entity.UsuarioEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
