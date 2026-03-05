@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.util.Arrays;
+import java.util.Base64;
 
 @Entity
 @Table(name = "usuario")
@@ -24,7 +25,7 @@ public class UsuarioEntity {
     @Column(name = "nombrecompleto")
     private String nombreCompleto;
 
-    @Transient
+    @Column
     private byte[] foto;
 
     public UsuarioEntity() {
@@ -76,6 +77,13 @@ public class UsuarioEntity {
 
     public void setFoto(byte[] foto) {
         this.foto = foto;
+    }
+
+    public String getFotoBase64(){
+        String rpta = null;
+        if(foto != null && foto.length > 0)
+            rpta = Base64.getEncoder().encodeToString(foto);
+        return rpta;
     }
 
     @Override

@@ -14,11 +14,7 @@ public class UsuarioService {
     private UsuarioDAO usuarioDAO;
 
     public UsuarioEntity validarLogin(UsuarioEntity usuario){
-        UsuarioEntity rpta = getUsuario(usuario.getUsuario());
-        if(rpta == null)
-            return rpta;
-        if(!rpta.getClave().equalsIgnoreCase(usuario.getClave()))
-            rpta = null;
+        UsuarioEntity rpta = usuarioDAO.findByUsuarioAndClave(usuario.getUsuario(), usuario.getClave());
         return rpta;
     }
 

@@ -40,7 +40,7 @@ public class UsuarioController {
         if(ue == null){
             mv = new ModelAndView("login","msgError", "Usuario y clave no existen. Vuelva a intentar");
         }else{
-            mv = new ModelAndView("usuarioLista", "lista", usuarioService.getListaUsuario());
+            mv = new ModelAndView("menu", "usuario", ue);
         }
         return mv;
     }
@@ -64,7 +64,7 @@ public class UsuarioController {
 
     @RequestMapping("usuarioEliminar")
     public ModelAndView usuarioEliminar(HttpServletRequest request){
-        String id = request.getParameter("id").trim();
+        String id = request.getParameter("codigoUsuario").trim();
         usuarioService.usuarioEliminar(id);
         return new ModelAndView("usuarioLista", "lista",actualizarListadoUsuarios());
     }
@@ -89,6 +89,13 @@ public class UsuarioController {
             throw new RuntimeException(e);
         }
         return new ModelAndView("usuarioLista","lista",usuarioService.getListaUsuario());
+    }
+
+    @RequestMapping("usuarioActualizar")
+    public ModelAndView usuarioActualizar(@RequestParam("codigoUsuario") String codigo){
+        ModelAndView mv = new ModelAndView("usuarioDatos", "usuarioBean", usuarioService.getUsuario(codigo));
+        mv.addObject("accion","Modificar");
+        return mv;
     }
 
 }
