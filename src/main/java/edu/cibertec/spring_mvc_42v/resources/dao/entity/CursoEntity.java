@@ -13,11 +13,15 @@ public class CursoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCurso;
+    @Column(name = "nomcurso")
     private String nomCurso;
     private Date   fechaInicio;
     private Integer alumnosMin;
     private Integer alumnosAct;
     private Integer estado;
+
+    public CursoEntity() {
+    }
 
     public Integer getIdCurso() {
         return idCurso;

@@ -22,7 +22,7 @@ public class UsuarioEntity {
     @NotBlank(message = "La clave no puede estar en blanco")
     @Column(nullable = false)
     private String clave;
-    @Column(name = "nombrecompleto")
+    @Column(name = "nombreCompleto")
     private String nombreCompleto;
 
     @Column
